@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class myFirstTest {
+public class MyFirstTest {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
