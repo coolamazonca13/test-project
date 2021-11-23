@@ -18,15 +18,15 @@ public class HomeWorkEight {
         driver= new ChromeDriver();
         wait= new WebDriverWait(driver, 10);
         driver.get(" http://localhost/litecart/en/");
-        List<WebElement> lists = driver.findElements(By.xpath(".//li[contains(@class,'product column')]"));
+        List<WebElement> lists = driver.findElements(By.cssSelector("li.product.column"));
         for (WebElement element:lists) {
-            assert isElementPresent(element, By.xpath(".//div[contains(@class,'sticker')]"));
+            assert checkCountStickers(element, By.cssSelector("div.sticker"));
         }
     }
 
-    boolean isElementPresent(WebElement element, By locator){
+    boolean checkCountStickers(WebElement element, By locator){
         try {
-            return element.findElements(locator).size() <= 1;
+            return element.findElements(locator).size() == 1;
         }catch (NoSuchElementException ex){
             return false;
         }
