@@ -27,7 +27,7 @@ public class HomeWorkNine {
         List<String> currentList = new ArrayList<String>();
         String mathElement = null;
         List<WebElement> lists = driver.findElements(By.xpath("//tr[@class='row']"));
-        for (int element = 0; element < driver.findElements(By.xpath("//tr[@class='row']")).size(); element++) {
+        for (int element = 0; element < lists.size(); element++) {
             mathElement = lists.get(element).findElement(By.xpath(".//td[5]")).getText();
             currentList.add(mathElement);
             if ((Integer.parseInt(lists.get(element).findElement(By.xpath(".//td[6]")).getText())) > 0) {
@@ -63,7 +63,7 @@ public class HomeWorkNine {
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
         List<WebElement> lists = driver.findElements(By.xpath("//tr[@class='row']"));
-        for (int element = 0; element < driver.findElements(By.xpath("//tr[@class='row']")).size(); element++) {
+        for (int element = 0; element < lists.size(); element++) {
             lists.get(element).findElement(By.xpath(".//td[3]/a")).click();
             String mathChieldElement = null;
             WebElement rootZone = driver.findElement(By.xpath("//table[@id='table-zones']"));
