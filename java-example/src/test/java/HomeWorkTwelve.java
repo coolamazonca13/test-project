@@ -18,7 +18,7 @@ public class HomeWorkTwelve {
     private static WebDriverWait wait;
 
     @Test
-    public void testRegisterNewUser() throws InterruptedException, IOException {
+    public void testRegisterNewItem() throws InterruptedException, IOException {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
