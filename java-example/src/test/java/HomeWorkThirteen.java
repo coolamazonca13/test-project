@@ -14,7 +14,7 @@ public class HomeWorkThirteen {
     private static WebDriverWait wait;
 
     @Test
-    public void testRegisterNewSale() throws InterruptedException {
+    public void testRegisterNewSale()  {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
         driver.get(" http://localhost/litecart/en/");
@@ -30,9 +30,7 @@ public class HomeWorkThirteen {
         }
         driver.findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
         int count = driver.findElements(By.xpath("//td[@class='item']")).size();
-        System.out.println("Before del count = " + count);
         for (int i = count; i > 0; i--) {
-            System.out.println("count=" + i);
             driver.findElements(By.xpath("//button[text()='Remove']")).get(0).click();
             wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//td[@class='item']"), i));
         }
