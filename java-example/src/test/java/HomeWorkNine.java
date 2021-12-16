@@ -1,11 +1,9 @@
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class HomeWorkNine {
     private static WebDriverWait wait;
 
     @Test
-    public void testCheckZoneState() throws InterruptedException {
+    public void testCheckZoneState() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
         driver.get(" http://localhost/litecart/admin/?app=countries&doc=countries");
@@ -84,8 +82,8 @@ public class HomeWorkNine {
     }
 
 
-    @AfterAll
-    public static void stopDriver() {
+    @After
+    public void stopDriver() {
         if (driver != null) {
             System.out.println("End");
             driver.quit();

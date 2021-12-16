@@ -3,14 +3,17 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class ItemDetailsScreen {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public ItemDetailsScreen(WebDriver webDriver) {
         driver = webDriver;
+        wait = new WebDriverWait(driver, 10);
     }
 
     public void addDuckToBasket() {
@@ -21,7 +24,7 @@ public class ItemDetailsScreen {
     }
 
     public void checkBasketValuesIsChanged(int count){
-        assert isElementPresent(By.xpath("//span[@class='quantity' and text()='" + count + "']"));
+        System.out.println( isElementPresent(By.xpath("//span[@class='quantity' and text()='" + count + "']")));
     }
 
     public void clickButtonBackToHome(){

@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,8 +40,8 @@ public class HomeWorkSeven {
         }
     }
 
-    @AfterAll
-    public static void stopDriver(){
+    @After
+    public void stopDriver(){
         if (driver != null) {
             System.out.println("End");
             driver.quit();

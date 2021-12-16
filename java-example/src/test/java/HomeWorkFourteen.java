@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
 import java.util.Set;
 
 public class HomeWorkFourteen {
@@ -48,8 +47,8 @@ public class HomeWorkFourteen {
         };
     }
 
-    @AfterAll
-    public static void stopDriver() {
+    @After
+    public void stopDriver() {
         if (driver != null) {
             System.out.println("End");
             driver.quit();

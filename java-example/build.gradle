@@ -10,12 +10,16 @@ repositories {
 }
 
 dependencies {
+    testImplementation(platform("io.cucumber:cucumber-bom:7.1.0"))
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0")
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'junit:junit:4.4'
+//    testImplementation 'org.junit.platform:junit-platform-suite'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation("io.cucumber:cucumber-java")
+    testImplementation("io.cucumber:cucumber-junit")
 
 }
 
 test {
-    useJUnitPlatform()
+    useJUnit()
 }

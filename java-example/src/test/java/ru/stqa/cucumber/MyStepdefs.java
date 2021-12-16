@@ -1,5 +1,8 @@
-import org.junit.After;
-import org.junit.Test;
+package ru.stqa.cucumber;
+
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -7,37 +10,40 @@ import pageObjects.CheckoutScreen;
 import pageObjects.ItemDetailsScreen;
 import pageObjects.MainUserScreen;
 
-public class HomeWorkNineteen {
+public class MyStepdefs {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
-    @Test
-    public void testRegisterNewSale() {
+    @When("user open main form magazine")
+    public void userOpenMainFormMagazine() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
         driver.get(" http://localhost/litecart/en/");
-        MainUserScreen mainUserScreen = new MainUserScreen(driver);
-        ItemDetailsScreen itemDetailsScreen = new ItemDetailsScreen(driver);
-        CheckoutScreen checkoutScreen = new CheckoutScreen(driver, wait);
+    }
 
+    @Then("user add 3 duck")
+    public void userAddDuck() {
+        ItemDetailsScreen itemDetailsScreen = new ItemDetailsScreen(driver);
         for (int i = 1; i < 4; i++) {
-            mainUserScreen.clickFirstDuck();
+            new MainUserScreen(driver).clickFirstDuck();
             itemDetailsScreen.addDuckToBasket();
             itemDetailsScreen.checkBasketValuesIsChanged(i);
             itemDetailsScreen.clickButtonBackToHome();
         }
-        mainUserScreen.clickButtonCheckout();
-
-        int count = checkoutScreen.getItemCount();
-        for (int i = count; i > 0; i--) {
-            checkoutScreen.clickDeleteItemAndWaitUpdate(i);
-        }
     }
 
-
-
-    @After
-    public void stopDriver() {
+    @Then("user del 3 duck")
+    public void userDelDuck() {
+        CheckoutScreen checkoutScreen = new CheckoutScreen(driver, wait);
+        new MainUserScreen(driver).clickButtonCheckout();
+        int count = checkoutScreen.getItemCount();
+        while(!checkoutScreen.checkTheCheckoutIsEmpty()){
+            checkoutScreen.clickDeleteItemAndWaitUpdate(count);
+            count--;
+        }
+    }
+    @AfterAll
+    public static void stopDriver() {
         if (driver != null) {
             System.out.println("End");
             driver.quit();

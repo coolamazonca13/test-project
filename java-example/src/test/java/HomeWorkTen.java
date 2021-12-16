@@ -1,6 +1,6 @@
 import com.sun.scenario.effect.impl.prism.PrImage;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -147,8 +147,8 @@ public class HomeWorkTen {
         }
     }
 
-    @AfterAll
-    public static void stopDriver() {
+    @After
+    public void stopDriver() {
         if (driver != null) {
             System.out.println("End");
             driver.quit();
