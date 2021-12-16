@@ -21,18 +21,19 @@ public class HomeWorkThirteen {
 
         for (int i = 1; i < 4; i++) {
             driver.findElements(By.xpath("//ul[@class='listing-wrapper products']/li")).get(0).click();
-            if (isElementPresent(By.xpath("//select"))) {
+            if (isElementPresent(By.xpath("//select"),1)) {
                 selectFromDropDownItem("options[Size]", "Small");
             }
             driver.findElement(By.name("add_cart_product")).click();
-            assert isElementPresent(By.xpath("//span[@class='quantity' and text()='" + i + "']"));
+            assert isElementPresent(By.xpath("//span[@class='quantity' and text()='" + i + "']"),10);
             driver.findElement(By.xpath("//a[text()='Home']")).click();
         }
         driver.findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
         int count = driver.findElements(By.xpath("//td[@class='item']")).size();
-        for (int i = count; i > 0; i--) {
+        while(!isElementPresent(By.xpath("//em[text()='There are no items in your cart.']"),1)){
             driver.findElements(By.xpath("//button[text()='Remove']")).get(0).click();
-            wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//td[@class='item']"), i));
+            wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//td[@class='item']"), count));
+            count--;
         }
     }
 
@@ -41,9 +42,9 @@ public class HomeWorkThirteen {
         dropDown.selectByVisibleText(optionName);
     }
 
-    boolean isElementPresent(By locator) {
+    boolean isElementPresent(By locator, int waitTime) {
         try {
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(waitTime, TimeUnit.SECONDS);
             return driver.findElements(locator).size() > 0;
         } finally {
             driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
